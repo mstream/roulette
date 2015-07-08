@@ -1,10 +1,10 @@
 package io.mstream.roulette.domain.roulette.bet;
 
 
-public class EvenBet extends Bet {
+public class OddBetType extends BetType {
 
     @Override
     public boolean test(Integer pocketNumber) {
-        return pocketNumber.intValue() % 2 == 0;
+        return pocketNumber.intValue() % 2 == 1;
     }
 }

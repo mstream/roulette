@@ -2,13 +2,13 @@ package io.mstream.roulette.command;
 
 import java.math.BigDecimal;
 
-public class RegisterPlayer {
+public class Player {
 
     private final String name;
     private final BigDecimal totalWin;
     private final BigDecimal totalBet;
 
-    private RegisterPlayer(
+    private Player(
             String name,
             BigDecimal totalWin,
             BigDecimal totalBet) {
@@ -22,7 +22,7 @@ public class RegisterPlayer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RegisterPlayer that = (RegisterPlayer) o;
+        Player that = (Player) o;
 
         if (!name.equals(that.name)) return false;
         if (!totalWin.equals(that.totalWin)) return false;
@@ -69,8 +69,8 @@ public class RegisterPlayer {
             return this;
         }
 
-        public RegisterPlayer build() {
-            return new RegisterPlayer(
+        public Player build() {
+            return new Player(
                     name,
                     totalWin != null ? totalWin : BigDecimal.ZERO,
                     totalBet != null ? totalBet : BigDecimal.ZERO);

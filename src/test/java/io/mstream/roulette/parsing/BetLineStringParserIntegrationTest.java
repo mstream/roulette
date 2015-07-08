@@ -1,6 +1,9 @@
 package io.mstream.roulette.parsing;
 
+import io.mstream.roulette.command.Bet;
 import io.mstream.roulette.command.Player;
+import io.mstream.roulette.domain.roulette.bet.BetType;
+import io.mstream.roulette.domain.roulette.bet.BetTypeFactory;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -8,22 +11,22 @@ import java.math.BigDecimal;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class PlayerLineStringParserTest {
+public class BetLineStringParserIntegrationTest {
 
-    private PlayerLineStringParser instance = new PlayerLineStringParser();
+    private BetLineStringParser instance = new BetLineStringParser(new BetTypeFactory());
 
     @Test
     public void shouldCreatePlayerFromNameOnly() {
-        String playerLine = "John";
+        String betLine = "John EVEN 2.0";
         //
-        Player parsedPlayer = instance.apply(playerLine);
+        Bet parsedBet = instance.apply(betLine);
         //
-        assertNotNull(parsedPlayer);
-        assertEquals("John", parsedPlayer.getName());
-        assertNotNull(parsedPlayer.getTotalWin());
-        assertEquals(BigDecimal.ZERO, parsedPlayer.getTotalWin());
-        assertNotNull(parsedPlayer.getTotalBet());
-        assertEquals(BigDecimal.ZERO, parsedPlayer.getTotalBet());
+        assertNotNull(parsedBet);
+        assertEquals("John", parsedBet.getPlayerName());
+        assertNotNull(parsedBet.getType());
+        assertEquals(BetType., parsedBet.getTotalWin());
+        assertNotNull(parsedBet.getTotalBet());
+        assertEquals(BigDecimal.ZERO, parsedBet.getTotalBet());
     }
 
     @Test

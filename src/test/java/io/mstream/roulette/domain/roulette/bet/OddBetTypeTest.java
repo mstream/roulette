@@ -4,9 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-public class OddBetTest {
+public class OddBetTypeTest {
 
-    private OddBet instance = new OddBet();
+    private OddBetType instance = new OddBetType();
 
     @Test
     public void shouldMatchWhenPocketNumberIsOdd() {

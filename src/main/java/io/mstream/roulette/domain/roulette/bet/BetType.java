@@ -3,7 +3,7 @@ package io.mstream.roulette.domain.roulette.bet;
 
 import java.util.function.Predicate;
 
-public abstract class Bet implements Predicate<Integer> {
+public abstract class BetType implements Predicate<Integer> {
 
     @Override
     public Predicate<Integer> and(Predicate<? super Integer> other) {

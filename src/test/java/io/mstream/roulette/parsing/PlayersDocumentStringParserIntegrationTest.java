@@ -1,6 +1,6 @@
 package io.mstream.roulette.parsing;
 
-import io.mstream.roulette.command.RegisterPlayer;
+import io.mstream.roulette.command.Player;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,24 +14,24 @@ public class PlayersDocumentStringParserIntegrationTest {
 
     @Test
     public void test() {
-        RegisterPlayer john = new RegisterPlayer.Builder("John")
+        Player john = new Player.Builder("John")
                 .build();
-        RegisterPlayer mike = new RegisterPlayer.Builder("Mike")
+        Player mike = new Player.Builder("Mike")
                 .build();
-        RegisterPlayer doug = new RegisterPlayer.Builder("Doug")
+        Player doug = new Player.Builder("Doug")
                 .withTotalWin(BigDecimal.ONE)
                 .withTotalBet(BigDecimal.TEN)
                 .build();
         String playersStr = "John\nMike\nDoug,1,10";
         //
-        List<RegisterPlayer> registerPlayers =
+        List<Player> players =
                 instance.apply(playersStr);
         //
-        Assert.assertNotNull(registerPlayers);
-        Assert.assertEquals(3, registerPlayers.size());
-        Assert.assertEquals(john, registerPlayers.get(0));
-        Assert.assertEquals(mike, registerPlayers.get(1));
-        Assert.assertEquals(doug, registerPlayers.get(2));
+        Assert.assertNotNull(players);
+        Assert.assertEquals(3, players.size());
+        Assert.assertEquals(john, players.get(0));
+        Assert.assertEquals(mike, players.get(1));
+        Assert.assertEquals(doug, players.get(2));
 
     }
 }

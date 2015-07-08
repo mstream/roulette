@@ -1,4 +1,4 @@
 package io.mstream.roulette.events;
 
-public class BallStarted {
+public class BallStarted implements Event {
 }

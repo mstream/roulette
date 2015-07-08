@@ -1,19 +1,18 @@
 package io.mstream.roulette.parsing;
 
-import io.mstream.roulette.command.RegisterPlayer;
+import io.mstream.roulette.command.Player;
 
 import java.math.BigDecimal;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PlayerLineStringParser extends StringParser<RegisterPlayer> {
+public class PlayerLineStringParser extends StringParser<Player> {
 
     private Pattern linePattern = Pattern.compile(
-            "(?<playerName>\\w+)(\\s*,\\s*(?<totalWin>\\d+(\\.\\d+)?))?(\\s*,\\s*(?<totalBet>\\d+(\\.\\d+)?))?");
+            "(?<playerName>\\w+)(\\s*,\\s*(?<totalWin>\\d+(\\.\\d+)?))?(\\s*,\\s*(?<totalBet>\\d+(\\.\\d+)?))?\\s*");
 
     @Override
-    public RegisterPlayer apply(String playerLine) {
+    public Player apply(String playerLine) {
         if (playerLine == null) {
             throw new IllegalArgumentException();
         }
@@ -24,8 +23,8 @@ public class PlayerLineStringParser extends StringParser<RegisterPlayer> {
         String playerName = matcher.group("playerName");
         String totalWinStr = matcher.group("totalWin");
         String totalBetStr = matcher.group("totalBet");
-        RegisterPlayer.Builder registerPlayerBuilder =
-                new RegisterPlayer.Builder(playerName);
+        Player.Builder registerPlayerBuilder =
+                new Player.Builder(playerName);
         if (totalWinStr != null) {
             registerPlayerBuilder.withTotalWin(new BigDecimal(totalWinStr));
         }
@@ -35,13 +34,4 @@ public class PlayerLineStringParser extends StringParser<RegisterPlayer> {
         return registerPlayerBuilder.build();
     }
 
-    @Override
-    public <V> Function<V, RegisterPlayer> compose(Function<? super V, ? extends String> before) {
-        return null;
-    }
-
-    @Override
-    public <V> Function<String, V> andThen(Function<? super RegisterPlayer, ? extends V> after) {
-        return null;
-    }
 }

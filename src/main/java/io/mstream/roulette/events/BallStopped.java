@@ -1,6 +1,6 @@
 package io.mstream.roulette.events;
 
-public class BallStopped {
+public class BallStopped implements Event {
 
     private final int slotNumber;
 

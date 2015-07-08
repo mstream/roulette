@@ -4,17 +4,17 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-public class EvenBetTest {
+public class NumberBetTypeTest {
 
-    private EvenBet instance = new EvenBet();
+    private NumberBetType instance = new NumberBetType(2);
 
     @Test
-    public void shouldMatchWhenPocketNumberIsEven() {
+    public void shouldMatchWhenPocketNumberIsChosenNumber() {
         Assert.assertTrue(instance.test(2));
     }
 
     @Test
-    public void shouldNotMatchWhenPocketNumberIsOdd() {
+    public void shouldNotMatchWhenPocketNumberIsNotChosenNumber() {
         Assert.assertFalse(instance.test(3));
     }
 

@@ -1,11 +1,11 @@
 package io.mstream.roulette.domain.roulette.bet;
 
 
-public class NumberBet extends Bet {
+public class NumberBetType extends BetType {
 
     private final int number;
 
-    public NumberBet(int number) {
+    public NumberBetType(int number) {
         this.number = number;
     }
 
