@@ -1,4 +1,4 @@
-package io.mstream.roulette.domain.roulette;
+package io.mstream.roulette.domain.roulette.bet;
 
 import io.mstream.roulette.domain.roulette.bet.BetType;
 

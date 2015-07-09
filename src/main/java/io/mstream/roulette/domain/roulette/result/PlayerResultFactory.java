@@ -1,6 +1,6 @@
 package io.mstream.roulette.domain.roulette.result;
 
-import io.mstream.roulette.domain.roulette.Bet;
+import io.mstream.roulette.domain.roulette.bet.Bet;
 import io.mstream.roulette.domain.roulette.prize.PrizeCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

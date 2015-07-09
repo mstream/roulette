@@ -8,4 +8,7 @@ public class EvenBetType extends BetType {
         return pocketNumber.intValue() % 2 == 0;
     }
 
+    @Override public String toString( ) {
+        return "EVEN";
+    }
 }

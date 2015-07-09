@@ -33,4 +33,8 @@ public class NumberBetType extends BetType {
     public int hashCode( ) {
         return number;
     }
+
+    @Override public String toString( ) {
+        return String.valueOf( number );
+    }
 }

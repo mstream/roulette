@@ -21,4 +21,20 @@ public class PlayerResult {
 		this.outcome = outcome;
 		this.winning = winning;
 	}
+
+	public String getPlayerName( ) {
+		return playerName;
+	}
+
+	public BetType getBetType( ) {
+		return betType;
+	}
+
+	public Outcome getOutcome( ) {
+		return outcome;
+	}
+
+	public BigDecimal getWinning( ) {
+		return winning;
+	}
 }

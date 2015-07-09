@@ -1,6 +1,6 @@
 package io.mstream.roulette.parsing;
 
-import io.mstream.roulette.domain.roulette.Bet;
+import io.mstream.roulette.domain.roulette.bet.Bet;
 import io.mstream.roulette.domain.roulette.bet.BetTypeFactory;
 import org.junit.Test;
 

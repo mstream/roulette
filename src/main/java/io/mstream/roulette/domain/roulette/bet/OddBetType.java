@@ -7,4 +7,8 @@ public class OddBetType extends BetType {
     public boolean test(Integer pocketNumber) {
         return pocketNumber.intValue() % 2 == 1;
     }
+
+    @Override public String toString( ) {
+        return "ODD";
+    }
 }
