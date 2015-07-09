@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,6 +23,11 @@ import java.util.Map;
 @Configuration
 @PropertySource( "classpath:application.properties" )
 public class RouletteConfiguration {
+
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer( ) {
+		return new PropertySourcesPlaceholderConfigurer( );
+	}
 
 	@Bean
 	public NumbersGenerator numbersGenerator( ) {
@@ -58,8 +64,8 @@ public class RouletteConfiguration {
 	}
 
 	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
+	public InputStream inputStream( ) {
+		return System.in;
 	}
 
 }

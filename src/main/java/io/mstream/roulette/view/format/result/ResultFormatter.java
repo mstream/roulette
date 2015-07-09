@@ -1,6 +1,8 @@
-package io.mstream.roulette.view.format;
+package io.mstream.roulette.view.format.result;
 
 import io.mstream.roulette.domain.result.Result;
+import io.mstream.roulette.view.format.ObjectToStringFormatter;
+import io.mstream.roulette.view.format.TableTemplateBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,13 +13,15 @@ import java.util.stream.Collectors;
 public class ResultFormatter implements ObjectToStringFormatter<Result> {
 
 	private final PlayerResultFormatter playerResultFormatter;
-
-	private final String headerTemplate =
-			"Number: %d\nPlayer Bet Outcome Winnings\n---\n";
+	private final String headerTemplate;
 
 	@Autowired
-	public ResultFormatter( PlayerResultFormatter playerResultFormatter ) {
+	public ResultFormatter(
+			PlayerResultFormatter playerResultFormatter,
+			TableTemplateBuilder tableTemplateBuilder ) {
 		this.playerResultFormatter = playerResultFormatter;
+		this.headerTemplate =
+				"Number: %d\n" + tableTemplateBuilder.build( 4 ) + "\n---\n";
 	}
 
 	@Override public String apply( Result result ) {
@@ -27,7 +31,13 @@ public class ResultFormatter implements ObjectToStringFormatter<Result> {
 				.map( playerResultFormatter::apply )
 				.collect( Collectors.joining("\n") );
 
-		return String.format( headerTemplate, result.getWinningNumber( ) ) +
+		return String.format(
+				headerTemplate,
+				result.getWinningNumber( ),
+				"Player",
+				"Bet",
+				"Outcome",
+				"Winnings" ) +
 				playersResultsStr + "\n";
 	}
 }

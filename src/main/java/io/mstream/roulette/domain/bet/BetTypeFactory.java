@@ -1,5 +1,9 @@
 package io.mstream.roulette.domain.bet;
 
+import org.springframework.stereotype.Component;
+
+
+@Component
 public class BetTypeFactory {
 
     private final String numberRegex = "\\d+";
