@@ -6,12 +6,16 @@ import io.mstream.roulette.domain.roulette.result.PlayerResultFactory;
 import io.mstream.roulette.domain.roulette.result.Result;
 import io.mstream.roulette.view.format.ResultFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+
 
 @Component
 public class Roulette {
@@ -20,42 +24,47 @@ public class Roulette {
 	private final PlayerResultFactory playerResultFactory;
 	private final ResultFormatter resultFormatter;
 
-	private final Map<String, Player> players = new HashMap<>( );
+	private final Map<String, Player> players;
 	private final Map<Player, Bet> bets = new HashMap<>( );
 
 	@Autowired
-	public Roulette( NumbersGenerator numbersGenerator,
+	public Roulette(
+			NumbersGenerator numbersGenerator,
 			PlayerResultFactory playerResultFactory,
-			ResultFormatter resultFormatter ) {
+			ResultFormatter resultFormatter,
+			@Value( "#{players}" )
+			List<Player> players ) {
 		this.numbersGenerator = numbersGenerator;
 		this.playerResultFactory = playerResultFactory;
 		this.resultFormatter = resultFormatter;
-	}
-
-	public void addPlayer( Player player ) {
-		if ( players.containsKey( player.getName( ) ) ) {
-			throw new IllegalArgumentException( );
-		}
-		players.put( player.getName( ), player );
+		this.players = players
+				.stream( )
+				.collect( Collectors.toMap(
+								Player::getName,
+								Function.<Player>identity( ) )
+				);
 	}
 
 	public void placeBet( Bet bet ) {
 		String playerName = bet.getPlayerName( );
 		Player player = players.get( playerName );
 		if ( player == null ) {
-			throw new IllegalArgumentException( "no such player: " + playerName );
+			throw new IllegalArgumentException(
+					"no such player: " + playerName );
 		}
 		bets.put( player, bet );
 	}
 
+	@Scheduled(initialDelay = 3000, fixedRate = 3000)
 	public void roll( ) {
 		int winningNumber = numbersGenerator.get( );
 		List<PlayerResult> playersResults = bets.values( )
 				.stream( )
-				.map( bet -> playerResultFactory.createResult( bet, winningNumber ) )
+				.map( bet -> playerResultFactory
+						.createResult( bet, winningNumber ) )
 				.collect( Collectors.toList( ) );
 		Result result = new Result( winningNumber, playersResults );
-		System.out.println(resultFormatter.apply( result ) );
+		System.out.println( resultFormatter.apply( result ) );
 	}
 
 }
