@@ -1,6 +1,6 @@
 package io.mstream.roulette.parsing;
 
-import io.mstream.roulette.domain.roulette.Player;
+import io.mstream.roulette.domain.Player;
 
 import java.math.BigDecimal;
 import java.util.regex.Matcher;

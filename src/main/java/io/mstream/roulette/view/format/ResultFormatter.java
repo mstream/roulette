@@ -1,6 +1,6 @@
 package io.mstream.roulette.view.format;
 
-import io.mstream.roulette.domain.roulette.result.Result;
+import io.mstream.roulette.domain.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

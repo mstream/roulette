@@ -1,15 +1,16 @@
 package io.mstream.roulette;
 
-import io.mstream.roulette.domain.roulette.NumbersGenerator;
-import io.mstream.roulette.domain.roulette.Player;
-import io.mstream.roulette.domain.roulette.RangeNumberGenerator;
-import io.mstream.roulette.domain.roulette.bet.EvenBetType;
-import io.mstream.roulette.domain.roulette.bet.NumberBetType;
-import io.mstream.roulette.domain.roulette.bet.OddBetType;
-import io.mstream.roulette.domain.roulette.prize.rule.PrizeCalculationRule;
+import io.mstream.roulette.domain.NumbersGenerator;
+import io.mstream.roulette.domain.Player;
+import io.mstream.roulette.domain.RangeNumberGenerator;
+import io.mstream.roulette.domain.bet.EvenBetType;
+import io.mstream.roulette.domain.bet.NumberBetType;
+import io.mstream.roulette.domain.bet.OddBetType;
+import io.mstream.roulette.domain.prize.rule.PrizeCalculationRule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -19,6 +20,7 @@ import java.util.Map;
 
 
 @Configuration
+@PropertySource( "classpath:application.properties" )
 public class RouletteConfiguration {
 
 	@Bean
@@ -26,7 +28,7 @@ public class RouletteConfiguration {
 		return new RangeNumberGenerator( 0, 36 );
 	}
 
-	@Bean(name = "priceCalculationRules")
+	@Bean( name = "priceCalculationRules" )
 	public Map<String, PrizeCalculationRule> priceCalculationRules( ) {
 		Map<String, PrizeCalculationRule> rules = new HashMap<>( );
 
@@ -46,12 +48,18 @@ public class RouletteConfiguration {
 		return rules;
 	}
 
-	@Bean(name = "players")
-	public List<Player> players() {
+	@Bean( name = "players" )
+	public List<Player> players( ) {
 		return Arrays.asList(
-				new Player.Builder("Foo").build(),
-				new Player.Builder("Bar").build(),
-				new Player.Builder("Biz").build()
+				new Player.Builder( "Foo" ).build( ),
+				new Player.Builder( "Bar" ).build( ),
+				new Player.Builder( "Biz" ).build( )
 		);
 	}
+
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
+
 }

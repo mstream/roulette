@@ -1,6 +1,6 @@
-package io.mstream.roulette.domain.roulette.result;
+package io.mstream.roulette.domain.result;
 
-import io.mstream.roulette.domain.roulette.bet.BetType;
+import io.mstream.roulette.domain.bet.BetType;
 
 import java.math.BigDecimal;
 

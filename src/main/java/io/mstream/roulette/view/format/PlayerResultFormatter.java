@@ -1,6 +1,6 @@
 package io.mstream.roulette.view.format;
 
-import io.mstream.roulette.domain.roulette.result.PlayerResult;
+import io.mstream.roulette.domain.result.PlayerResult;
 import org.springframework.stereotype.Component;
 
 

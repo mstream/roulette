@@ -1,4 +1,4 @@
-package io.mstream.roulette.domain.roulette.result;
+package io.mstream.roulette.domain.result;
 
 import java.util.Collections;
 import java.util.List;

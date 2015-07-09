@@ -1,8 +1,8 @@
 package io.mstream.roulette;
 
-import io.mstream.roulette.domain.roulette.Roulette;
-import io.mstream.roulette.domain.roulette.bet.Bet;
-import io.mstream.roulette.domain.roulette.bet.BetTypeFactory;
+import io.mstream.roulette.domain.Roulette;
+import io.mstream.roulette.domain.bet.Bet;
+import io.mstream.roulette.domain.bet.BetTypeFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

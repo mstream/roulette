@@ -1,4 +1,4 @@
-package io.mstream.roulette.domain.roulette.bet;
+package io.mstream.roulette.domain.bet;
 
 public class BetTypeFactory {
 

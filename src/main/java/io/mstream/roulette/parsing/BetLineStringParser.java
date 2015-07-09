@@ -1,7 +1,7 @@
 package io.mstream.roulette.parsing;
 
-import io.mstream.roulette.domain.roulette.bet.Bet;
-import io.mstream.roulette.domain.roulette.bet.BetTypeFactory;
+import io.mstream.roulette.domain.bet.Bet;
+import io.mstream.roulette.domain.bet.BetTypeFactory;
 
 import java.math.BigDecimal;
 import java.util.regex.Matcher;

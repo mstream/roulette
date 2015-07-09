@@ -1,14 +1,12 @@
-package io.mstream.roulette.domain.roulette.result;
+package io.mstream.roulette.domain.result;
 
-import io.mstream.roulette.domain.roulette.bet.Bet;
-import io.mstream.roulette.domain.roulette.prize.PrizeCalculator;
+import io.mstream.roulette.domain.bet.Bet;
+import io.mstream.roulette.domain.prize.PrizeCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
-import static io.mstream.roulette.domain.roulette.result.Outcome.LOSE;
-import static io.mstream.roulette.domain.roulette.result.Outcome.WIN;
 
 @Component
 public class PlayerResultFactory {
@@ -25,7 +23,7 @@ public class PlayerResultFactory {
 		return new PlayerResult(
 				bet.getPlayerName( ),
 				bet.getType( ),
-				isWinning ? WIN : LOSE,
+				isWinning ? Outcome.WIN : Outcome.LOSE,
 				isWinning ? prizeCalculator.apply( bet ) : BigDecimal.ZERO );
 	}
 }

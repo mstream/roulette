@@ -1,6 +1,6 @@
 package io.mstream.roulette.parsing;
 
-import io.mstream.roulette.domain.roulette.Player;
+import io.mstream.roulette.domain.Player;
 import org.junit.Assert;
 import org.junit.Test;
 

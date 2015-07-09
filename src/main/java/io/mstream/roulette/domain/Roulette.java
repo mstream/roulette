@@ -1,9 +1,9 @@
-package io.mstream.roulette.domain.roulette;
+package io.mstream.roulette.domain;
 
-import io.mstream.roulette.domain.roulette.bet.Bet;
-import io.mstream.roulette.domain.roulette.result.PlayerResult;
-import io.mstream.roulette.domain.roulette.result.PlayerResultFactory;
-import io.mstream.roulette.domain.roulette.result.Result;
+import io.mstream.roulette.domain.bet.Bet;
+import io.mstream.roulette.domain.result.PlayerResult;
+import io.mstream.roulette.domain.result.PlayerResultFactory;
+import io.mstream.roulette.domain.result.Result;
 import io.mstream.roulette.view.format.ResultFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,7 +55,9 @@ public class Roulette {
 		bets.put( player, bet );
 	}
 
-	@Scheduled(initialDelay = 3000, fixedRate = 3000)
+	@Scheduled(
+			initialDelayString = "${roulette.rollRateInMilliseconds}",
+			fixedRateString = "${roulette.rollRateInMilliseconds}" )
 	public void roll( ) {
 		int winningNumber = numbersGenerator.get( );
 		List<PlayerResult> playersResults = bets.values( )
