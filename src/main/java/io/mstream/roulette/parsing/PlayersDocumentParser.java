@@ -1,6 +1,6 @@
 package io.mstream.roulette.parsing;
 
-import io.mstream.roulette.command.Player;
+import io.mstream.roulette.domain.roulette.Player;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.io.StringReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PlayersDocumentParser extends StringParser<List<Player>> {
+public class PlayersDocumentParser implements StringParser<List<Player>> {
 
     private final PlayerLineStringParser playerLineParser;
 

@@ -1,12 +1,12 @@
 package io.mstream.roulette.parsing;
 
-import io.mstream.roulette.command.Player;
+import io.mstream.roulette.domain.roulette.Player;
 
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PlayerLineStringParser extends StringParser<Player> {
+public class PlayerLineStringParser implements StringParser<Player> {
 
     private Pattern linePattern = Pattern.compile(
             "(?<playerName>\\w+)(\\s*,\\s*(?<totalWin>\\d+(\\.\\d+)?))?(\\s*,\\s*(?<totalBet>\\d+(\\.\\d+)?))?\\s*");

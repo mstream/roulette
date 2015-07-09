@@ -1,6 +1,6 @@
 package io.mstream.roulette.parsing;
 
-import io.mstream.roulette.command.Player;
+import io.mstream.roulette.domain.roulette.Player;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -21,9 +21,9 @@ public class PlayerLineStringParserTest {
         assertNotNull(parsedPlayer);
         assertEquals("John", parsedPlayer.getName());
         assertNotNull(parsedPlayer.getTotalWin());
-        assertEquals(BigDecimal.ZERO, parsedPlayer.getTotalWin());
+        assertEquals(BigDecimal.ZERO.doubleValue(), parsedPlayer.getTotalWin().doubleValue(), 0);
         assertNotNull(parsedPlayer.getTotalBet());
-        assertEquals(BigDecimal.ZERO, parsedPlayer.getTotalBet());
+        assertEquals(BigDecimal.ZERO.doubleValue(), parsedPlayer.getTotalBet().doubleValue(), 0);
     }
 
     @Test
@@ -35,9 +35,9 @@ public class PlayerLineStringParserTest {
         assertNotNull(parsedPlayer);
         assertEquals("John", parsedPlayer.getName());
         assertNotNull(parsedPlayer.getTotalWin());
-        assertEquals(BigDecimal.valueOf(9.5), parsedPlayer.getTotalWin());
+        assertEquals(BigDecimal.valueOf(9.5).doubleValue(), parsedPlayer.getTotalWin().doubleValue(), 0);
         assertNotNull(parsedPlayer.getTotalBet());
-        assertEquals(BigDecimal.valueOf(10.0), parsedPlayer.getTotalBet());
+        assertEquals(BigDecimal.valueOf(10.0).doubleValue(), parsedPlayer.getTotalBet().doubleValue(), 0);
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -1,6 +1,6 @@
 package io.mstream.roulette.domain.roulette;
 
-interface NumbersGenerator {
+import java.util.function.Supplier;
 
-    int getNext();
-}
+
+public interface NumbersGenerator extends Supplier<Integer> {}

@@ -1,13 +1,13 @@
 package io.mstream.roulette.parsing;
 
-import io.mstream.roulette.command.Bet;
+import io.mstream.roulette.domain.roulette.Bet;
 import io.mstream.roulette.domain.roulette.bet.BetTypeFactory;
 
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class BetLineStringParser extends StringParser<Bet> {
+public class BetLineStringParser implements StringParser<Bet> {
 
     private final Pattern linePattern = Pattern.compile(
             "(?<playerName>\\w+)(\\s+(?<bet>\\w+|d+))(\\s+(?<amount>\\d+(\\.\\d+)?))\\s*");

@@ -7,4 +7,5 @@ public class EvenBetType extends BetType {
     public boolean test(Integer pocketNumber) {
         return pocketNumber.intValue() % 2 == 0;
     }
+
 }
