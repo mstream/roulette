@@ -1,7 +1,8 @@
-package io.mstream.roulette.parsing;
+package io.mstream.roulette.input.parsing.bet;
 
 import io.mstream.roulette.domain.bet.Bet;
 import io.mstream.roulette.domain.bet.BetTypeFactory;
+import io.mstream.roulette.input.parsing.StringParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

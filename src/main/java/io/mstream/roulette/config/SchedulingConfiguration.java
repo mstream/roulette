@@ -1,4 +1,4 @@
-package io.mstream.roulette;
+package io.mstream.roulette.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

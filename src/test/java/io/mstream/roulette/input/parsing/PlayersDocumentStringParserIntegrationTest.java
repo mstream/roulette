@@ -1,6 +1,8 @@
-package io.mstream.roulette.parsing;
+package io.mstream.roulette.input.parsing;
 
 import io.mstream.roulette.domain.Player;
+import io.mstream.roulette.input.parsing.player.PlayerLineStringParser;
+import io.mstream.roulette.input.parsing.player.PlayersLinesParser;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,8 +11,8 @@ import java.util.List;
 
 public class PlayersDocumentStringParserIntegrationTest {
 
-    private PlayersDocumentParser instance =
-            new PlayersDocumentParser(new PlayerLineStringParser());
+    private PlayersLinesParser instance =
+            new PlayersLinesParser( new PlayerLineStringParser( ) );
 
     @Test
     public void test() {

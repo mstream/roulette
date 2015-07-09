@@ -1,4 +1,4 @@
-package io.mstream.roulette;
+package io.mstream.roulette.config;
 
 import io.mstream.roulette.domain.NumbersGenerator;
 import io.mstream.roulette.domain.Player;
@@ -7,14 +7,15 @@ import io.mstream.roulette.domain.bet.EvenBetType;
 import io.mstream.roulette.domain.bet.NumberBetType;
 import io.mstream.roulette.domain.bet.OddBetType;
 import io.mstream.roulette.domain.prize.rule.PrizeCalculationRule;
+import io.mstream.roulette.input.parsing.player.PlayersLinesParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,17 +56,18 @@ public class RouletteConfiguration {
 	}
 
 	@Bean( name = "players" )
-	public List<Player> players( ) {
-		return Arrays.asList(
-				new Player.Builder( "Foo" ).build( ),
-				new Player.Builder( "Bar" ).build( ),
-				new Player.Builder( "Biz" ).build( )
-		);
+	public List<Player> players( PlayersLinesParser playersParser ) {
+		return playersParser.apply( "Foo\nBar\nBiz" );
 	}
 
 	@Bean
 	public InputStream inputStream( ) {
 		return System.in;
+	}
+
+	@Bean
+	public PrintStream printStream( ) {
+		return System.out;
 	}
 
 }

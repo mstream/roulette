@@ -1,7 +1,8 @@
-package io.mstream.roulette.parsing;
+package io.mstream.roulette.input.parsing;
 
 import io.mstream.roulette.domain.bet.Bet;
 import io.mstream.roulette.domain.bet.BetTypeFactory;
+import io.mstream.roulette.input.parsing.bet.BetLineStringParser;
 import org.junit.Test;
 
 import java.math.BigDecimal;

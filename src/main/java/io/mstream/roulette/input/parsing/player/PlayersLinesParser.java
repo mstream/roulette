@@ -1,6 +1,9 @@
-package io.mstream.roulette.parsing;
+package io.mstream.roulette.input.parsing.player;
 
 import io.mstream.roulette.domain.Player;
+import io.mstream.roulette.input.parsing.StringParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,11 +11,14 @@ import java.io.StringReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PlayersDocumentParser implements StringParser<List<Player>> {
+
+@Component
+public class PlayersLinesParser implements StringParser<List<Player>> {
 
     private final PlayerLineStringParser playerLineParser;
 
-    public PlayersDocumentParser(PlayerLineStringParser playerLineParser) {
+    @Autowired
+    public PlayersLinesParser( PlayerLineStringParser playerLineParser ) {
         this.playerLineParser = playerLineParser;
     }
 

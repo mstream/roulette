@@ -1,4 +1,4 @@
-package io.mstream.roulette.view.format;
+package io.mstream.roulette.output.format;
 
 import java.util.function.Function;
 

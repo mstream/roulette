@@ -1,11 +1,15 @@
-package io.mstream.roulette.parsing;
+package io.mstream.roulette.input.parsing.player;
 
 import io.mstream.roulette.domain.Player;
+import io.mstream.roulette.input.parsing.StringParser;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+@Component
 public class PlayerLineStringParser implements StringParser<Player> {
 
     private Pattern linePattern = Pattern.compile(

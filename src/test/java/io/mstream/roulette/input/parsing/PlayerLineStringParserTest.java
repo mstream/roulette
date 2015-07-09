@@ -1,6 +1,7 @@
-package io.mstream.roulette.parsing;
+package io.mstream.roulette.input.parsing;
 
 import io.mstream.roulette.domain.Player;
+import io.mstream.roulette.input.parsing.player.PlayerLineStringParser;
 import org.junit.Test;
 
 import java.math.BigDecimal;

@@ -4,8 +4,9 @@ import io.mstream.roulette.domain.bet.Bet;
 import io.mstream.roulette.domain.result.PlayerResult;
 import io.mstream.roulette.domain.result.PlayerResultFactory;
 import io.mstream.roulette.domain.result.Result;
-import io.mstream.roulette.view.format.result.ResultFormatter;
-import io.mstream.roulette.view.format.summary.SummaryFormatter;
+import io.mstream.roulette.output.RouletteOutputWriter;
+import io.mstream.roulette.output.format.result.ResultFormatter;
+import io.mstream.roulette.output.format.summary.SummaryFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -25,6 +26,7 @@ public class Roulette {
 	private final PlayerResultFactory playerResultFactory;
 	private final ResultFormatter resultFormatter;
 	private final SummaryFormatter summaryFormatter;
+	private final RouletteOutputWriter outputWriter;
 
 	private final Map<String, Player> players;
 	private final Map<Player, Bet> bets = new HashMap<>( );
@@ -35,11 +37,13 @@ public class Roulette {
 			PlayerResultFactory playerResultFactory,
 			ResultFormatter resultFormatter,
 			@Value( "#{players}" )
-			List<Player> players, SummaryFormatter summaryFormatter ) {
+			List<Player> players, SummaryFormatter summaryFormatter,
+			RouletteOutputWriter outputWriter ) {
 		this.numbersGenerator = numbersGenerator;
 		this.playerResultFactory = playerResultFactory;
 		this.resultFormatter = resultFormatter;
 		this.summaryFormatter = summaryFormatter;
+		this.outputWriter = outputWriter;
 		this.players = players
 				.stream( )
 				.collect( Collectors.toMap(
@@ -71,8 +75,8 @@ public class Roulette {
 		clearBets( );
 		Result result = new Result( winningNumber, playersResults );
 
-		System.out.println( resultFormatter.apply( result ) );
-		System.out.println( summaryFormatter.apply( players.values( ) ) );
+		outputWriter.write( resultFormatter.apply( result ) );
+		outputWriter.write( summaryFormatter.apply( players.values( ) ) );
 	}
 
 	private void clearBets( ) {

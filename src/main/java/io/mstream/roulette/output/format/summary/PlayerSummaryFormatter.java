@@ -1,8 +1,8 @@
-package io.mstream.roulette.view.format.summary;
+package io.mstream.roulette.output.format.summary;
 
 import io.mstream.roulette.domain.Player;
-import io.mstream.roulette.view.format.ObjectToStringFormatter;
-import io.mstream.roulette.view.format.TableTemplateBuilder;
+import io.mstream.roulette.output.format.ObjectToStringFormatter;
+import io.mstream.roulette.output.format.TableTemplateBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -2,7 +2,7 @@ package io.mstream.roulette.input;
 
 import io.mstream.roulette.domain.Roulette;
 import io.mstream.roulette.domain.bet.Bet;
-import io.mstream.roulette.parsing.BetLineStringParser;
+import io.mstream.roulette.input.parsing.bet.BetLineStringParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

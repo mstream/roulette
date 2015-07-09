@@ -1,4 +1,4 @@
-package io.mstream.roulette.parsing;
+package io.mstream.roulette.input.parsing;
 
 
 import java.util.function.Function;
