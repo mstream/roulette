@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Optional;
@@ -47,7 +46,7 @@ public class PlayerInputReader {
 				Bet parsedBet = parsedBetOpt.get( );
 				roulette.placeBet( parsedBet );
 			}
-		} catch ( IOException e ) {
+		} catch ( Exception e ) {
 			LOGGER.error( "error while reading user input", e );
 		}
 	}

@@ -20,32 +20,16 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( classes = RouletteConfiguration.class )
 public class RouletteIT {
 
-	private static class ResultsObserver implements Observer {
-
-		private ResultsGenerated resultsGenerated;
-
-		@Override public void update( Observable o, Object arg ) {
-			resultsGenerated = ( ResultsGenerated ) arg;
-		}
-
-		public ResultsGenerated getResultsGenerated( ) {
-			return resultsGenerated;
-		}
-	}
-
 	private Roulette instance;
-
 	@Autowired
 	private PlayerResultFactory playerResultFactory;
-
 	@Autowired
 	private BetTypeFactory betTypeFactory;
 
@@ -168,8 +152,8 @@ public class RouletteIT {
 		//
 	}
 
-	@Test( expected = IllegalArgumentException.class )
-	public void shouldFailOnBetFromUnregisteredUser( ) {
+	@Test
+	public void shouldNotAcceptBetFromUnregisteredUser( ) {
 		instance = new Roulette(
 				( ) -> 7,
 				playerResultFactory,
@@ -186,6 +170,28 @@ public class RouletteIT {
 		bets
 				.stream( )
 				.forEach( instance::placeBet );
+		instance.generateResults( );
 		//
+		ResultsGenerated resultsGenerated =
+				resultsObserver.getResultsGenerated( );
+
+		assertNotNull( resultsGenerated );
+		Result result = resultsGenerated.getResult( );
+		assertNotNull( result );
+		assertNotNull( result.getPlayerResults( ) );
+		assertTrue( result.getPlayerResults( ).isEmpty( ) );
+	}
+
+	private static class ResultsObserver implements Observer {
+
+		private ResultsGenerated resultsGenerated;
+
+		@Override public void update( Observable o, Object arg ) {
+			resultsGenerated = ( ResultsGenerated ) arg;
+		}
+
+		public ResultsGenerated getResultsGenerated( ) {
+			return resultsGenerated;
+		}
 	}
 }

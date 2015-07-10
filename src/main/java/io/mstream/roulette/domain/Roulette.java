@@ -13,7 +13,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Observable;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Function;
@@ -56,8 +59,8 @@ public class Roulette extends Observable {
 		String playerName = bet.getPlayerName( );
 		Player player = players.get( playerName );
 		if ( player == null ) {
-			throw new IllegalArgumentException(
-					"no such player: " + playerName );
+			System.err.print( "no such player: " + playerName );
+			return;
 		}
 		resultGeneratorLock.lock( );
 		bets.put( player, bet );
