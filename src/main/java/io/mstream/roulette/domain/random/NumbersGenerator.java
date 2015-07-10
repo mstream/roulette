@@ -1,4 +1,4 @@
-package io.mstream.roulette.domain;
+package io.mstream.roulette.domain.random;
 
 import java.util.function.Supplier;
 

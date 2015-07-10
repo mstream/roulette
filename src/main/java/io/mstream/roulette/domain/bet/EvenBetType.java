@@ -13,6 +13,11 @@ public class EvenBetType implements BetType {
     }
 
     @Override public boolean equals( Object obj ) {
-        return obj instanceof EvenBetType;
+        return obj.getClass().equals( EvenBetType.class );
     }
+
+    @Override public int hashCode( ) {
+        return getClass().hashCode();
+    }
+
 }

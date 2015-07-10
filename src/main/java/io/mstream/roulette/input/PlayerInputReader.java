@@ -41,7 +41,7 @@ public class PlayerInputReader {
 			while ( (line = reader.readLine( )) != null ) {
 				Optional<Bet> parsedBetOpt = betParser.apply( line );
 				if ( !parsedBetOpt.isPresent( ) ) {
-					System.err.print( "could not parse the bet" );
+					System.err.println( "could not parse the bet" );
 					continue;
 				}
 				Bet parsedBet = parsedBetOpt.get( );

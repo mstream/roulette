@@ -13,10 +13,10 @@ public class OddBetType implements BetType {
     }
 
     @Override public boolean equals( Object obj ) {
-        return obj instanceof OddBetType;
+        return obj.getClass().equals( OddBetType.class );
     }
 
     @Override public int hashCode( ) {
-        return super.hashCode( );
+        return getClass().hashCode();
     }
 }

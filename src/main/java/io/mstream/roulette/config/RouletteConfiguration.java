@@ -1,13 +1,15 @@
 package io.mstream.roulette.config;
 
-import io.mstream.roulette.domain.NumbersGenerator;
+import io.mstream.roulette.domain.Roulette;
+import io.mstream.roulette.domain.random.NumbersGenerator;
 import io.mstream.roulette.domain.Player;
-import io.mstream.roulette.domain.RangeNumberGenerator;
-import io.mstream.roulette.domain.bet.BetTypeFactory;
+import io.mstream.roulette.domain.random.RandomNumbersGenerator;
+import io.mstream.roulette.domain.random.RangeNumberGenerator;
 import io.mstream.roulette.domain.bet.EvenBetType;
 import io.mstream.roulette.domain.bet.NumberBetType;
 import io.mstream.roulette.domain.bet.OddBetType;
 import io.mstream.roulette.domain.prize.rule.PrizeCalculationRule;
+import io.mstream.roulette.domain.random.SecureNumbersGenerator;
 import io.mstream.roulette.input.parsing.player.PlayersLinesParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,9 +20,11 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.math.BigDecimal;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 
 @Configuration
@@ -34,8 +38,13 @@ public class RouletteConfiguration {
 	}
 
 	@Bean
-	public NumbersGenerator numbersGenerator( ) {
-		return new RangeNumberGenerator( 0, 36 );
+	public RandomNumbersGenerator random( ) {
+		return new SecureNumbersGenerator();
+	}
+
+	@Bean
+	public NumbersGenerator numbersGenerator( RandomNumbersGenerator random ) {
+		return new RangeNumberGenerator( random, 0, 36 );
 	}
 
 	@Bean( name = "priceCalculationRules" )
