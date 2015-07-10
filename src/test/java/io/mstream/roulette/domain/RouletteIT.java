@@ -154,4 +154,38 @@ public class RouletteIT {
 		assertEquals( 10, players.get( 3 ).getTotalBet( ).doubleValue( ), 0 );
 		assertEquals( 0, players.get( 4 ).getTotalBet( ).doubleValue( ), 0 );
 	}
+
+	@Test( expected = IllegalArgumentException.class )
+	public void shouldFailOnNullBet( ) {
+		instance = new Roulette(
+				( ) -> 7,
+				playerResultFactory,
+				Arrays.asList( ) );
+		ResultsObserver resultsObserver = new ResultsObserver( );
+		instance.addObserver( resultsObserver );
+		//
+		instance.placeBet( null );
+		//
+	}
+
+	@Test( expected = IllegalArgumentException.class )
+	public void shouldFailOnBetFromUnregisteredUser( ) {
+		instance = new Roulette(
+				( ) -> 7,
+				playerResultFactory,
+				Arrays.asList(
+						new Player.Builder( "P1" )
+								.build( )
+				) );
+		List<Bet> bets = Arrays.asList(
+				new Bet( "PX", betTypeFactory.apply( "ODD" ), BigDecimal.TEN )
+		);
+		ResultsObserver resultsObserver = new ResultsObserver( );
+		instance.addObserver( resultsObserver );
+		//
+		bets
+				.stream( )
+				.forEach( instance::placeBet );
+		//
+	}
 }

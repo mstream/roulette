@@ -3,6 +3,8 @@ package io.mstream.roulette.input.parsing.player;
 import io.mstream.roulette.domain.Player;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -18,13 +20,17 @@ public class PlayersLinesParserTest {
 	public void shouldParseMultipleLines( ) {
 		String lines = "Foo\nBar\nBiz";
 		//
-		List<Player> parsedPlayers = instance.apply( lines );
+		List<Player> parsedPlayers = instance.apply(
+				new ByteArrayInputStream(
+						lines.getBytes( StandardCharsets.UTF_8 )
+				)
+		);
 		//
 		assertNotNull( parsedPlayers );
 		assertEquals( 3, parsedPlayers.size( ) );
-		assertEquals( "Foo", parsedPlayers.get( 0 ).getName() );
-		assertEquals( "Bar", parsedPlayers.get( 1 ).getName() );
-		assertEquals( "Biz", parsedPlayers.get( 2 ).getName() );
+		assertEquals( "Foo", parsedPlayers.get( 0 ).getName( ) );
+		assertEquals( "Bar", parsedPlayers.get( 1 ).getName( ) );
+		assertEquals( "Biz", parsedPlayers.get( 2 ).getName( ) );
 	}
 
 	@Test( expected = Exception.class )

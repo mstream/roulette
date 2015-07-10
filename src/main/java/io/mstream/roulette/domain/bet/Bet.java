@@ -11,6 +11,10 @@ public class Bet {
     public Bet(String playerName, BetType type, BigDecimal amount) {
         this.playerName = playerName;
         this.type = type;
+        if (BigDecimal.ZERO.compareTo( amount ) != -1) {
+            throw new IllegalArgumentException(
+                    "bet amount should be a positive number" );
+        }
         this.amount = amount;
     }
 

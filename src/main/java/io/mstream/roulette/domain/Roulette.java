@@ -53,10 +53,6 @@ public class Roulette extends Observable {
 		if ( bet == null ) {
 			throw new IllegalArgumentException( "bet cannot be null" );
 		}
-		if ( bet.getAmount( ).compareTo( BigDecimal.ZERO ) != 1 ) {
-			throw new IllegalArgumentException(
-					"bet amount should be a positive number" );
-		}
 		String playerName = bet.getPlayerName( );
 		Player player = players.get( playerName );
 		if ( player == null ) {
