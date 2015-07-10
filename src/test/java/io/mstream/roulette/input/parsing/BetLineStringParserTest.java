@@ -13,11 +13,7 @@ import static org.junit.Assert.*;
 
 public class BetLineStringParserTest {
 
-	private final BetType betType = new BetType( ) {
-		@Override public boolean test( Integer integer ) {
-			return false;
-		}
-	};
+	private final BetType betType = integer -> false;
 
 	private BetLineStringParser instance =
 			new BetLineStringParser( str -> betType );

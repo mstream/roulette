@@ -12,14 +12,14 @@ import static org.junit.Assert.assertEquals;
 
 public class PrizeCalculatorTest {
 
-	private static class MappedTestBetType extends BetType {
+	private static class MappedTestBetType implements BetType {
 
 		@Override public boolean test( Integer integer ) {
 			return false;
 		}
 	}
 
-	private static class NotMappedTestBetType extends BetType {
+	private static class NotMappedTestBetType implements BetType {
 
 		@Override public boolean test( Integer integer ) {
 			return false;

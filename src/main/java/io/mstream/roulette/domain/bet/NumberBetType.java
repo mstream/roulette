@@ -1,7 +1,7 @@
 package io.mstream.roulette.domain.bet;
 
 
-public class NumberBetType extends BetType {
+public class NumberBetType implements BetType {
 
     private final int number;
 

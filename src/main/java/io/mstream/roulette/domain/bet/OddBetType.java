@@ -1,7 +1,7 @@
 package io.mstream.roulette.domain.bet;
 
 
-public class OddBetType extends BetType {
+public class OddBetType implements BetType {
 
     @Override
     public boolean test(Integer pocketNumber) {

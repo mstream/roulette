@@ -41,6 +41,30 @@ public class BetTypeFactoryTest {
 	}
 
 	@Test( expected = IllegalArgumentException.class )
+	public void shouldFailOnNumberBetTypeOfZero( ) {
+		String betTypeStr = "0";
+		//
+		instance.apply( betTypeStr );
+		//
+	}
+
+	@Test( expected = IllegalArgumentException.class )
+	public void shouldFailOnNumberBetTypeOutOfRange( ) {
+		String betTypeStr = "50";
+		//
+		instance.apply( betTypeStr );
+		//
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldFailOnUnknownBetTypeString( ) {
+		String betTypeStr = "SOME_UNKNOWN_ONE";
+		//
+		instance.apply( betTypeStr );
+		//
+	}
+
+	@Test( expected = IllegalArgumentException.class )
 	public void shouldFailOnNullValue( ) {
 		//
 		instance.apply( null );
