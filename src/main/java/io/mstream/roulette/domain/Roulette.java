@@ -59,7 +59,7 @@ public class Roulette extends Observable {
 		String playerName = bet.getPlayerName( );
 		Player player = players.get( playerName );
 		if ( player == null ) {
-			System.err.print( "no such player: " + playerName );
+			System.err.println( "no such player: " + playerName );
 			return;
 		}
 		resultGeneratorLock.lock( );
