@@ -3,12 +3,14 @@ package io.mstream.roulette.config;
 import io.mstream.roulette.domain.NumbersGenerator;
 import io.mstream.roulette.domain.Player;
 import io.mstream.roulette.domain.RangeNumberGenerator;
+import io.mstream.roulette.domain.bet.BetTypeFactory;
 import io.mstream.roulette.domain.bet.EvenBetType;
 import io.mstream.roulette.domain.bet.NumberBetType;
 import io.mstream.roulette.domain.bet.OddBetType;
 import io.mstream.roulette.domain.prize.rule.PrizeCalculationRule;
 import io.mstream.roulette.input.parsing.player.PlayersLinesParser;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -22,6 +24,7 @@ import java.util.Map;
 
 
 @Configuration
+@ComponentScan(basePackages = "io.mstream.roulette")
 @PropertySource( "classpath:application.properties" )
 public class RouletteConfiguration {
 

@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.function.Function;
+
 
 @Component
-public class TableTemplateBuilder {
+public class TableTemplateBuilder implements ObjectToStringFormatter<Integer> {
 
 	private final int nameColumnWidth;
 	private final int otherColumnWidth;
@@ -22,7 +24,7 @@ public class TableTemplateBuilder {
 		this.otherColumnWidth = otherColumnWidth;
 	}
 
-	public String build( int columnsNumber ) {
+	@Override public String apply( Integer columnsNumber ) {
 		StringBuilder sb = new StringBuilder( );
 		sb.append( String.format( placeholderTemplate, nameColumnWidth ) );
 		for ( int i = 1; i < columnsNumber; i++ ) {

@@ -14,19 +14,23 @@ import java.util.stream.Collectors;
 public class SummaryFormatter
 		implements ObjectToStringFormatter<Collection<Player>> {
 
-	private final PlayerSummaryFormatter playerSummaryFormatter;
+	private final ObjectToStringFormatter<Player> playerSummaryFormatter;
 
 	private final String headerTemplate;
 
 	@Autowired
 	public SummaryFormatter(
-			PlayerSummaryFormatter playerSummaryFormatter,
-			TableTemplateBuilder tableTemplateBuilder ) {
+			ObjectToStringFormatter<Player> playerSummaryFormatter,
+			ObjectToStringFormatter<Integer> tableTemplateBuilder ) {
 		this.playerSummaryFormatter = playerSummaryFormatter;
-		this.headerTemplate = tableTemplateBuilder.build( 3 ) + "\n";
+		this.headerTemplate = tableTemplateBuilder.apply( 3 ) + "\n";
 	}
 
 	@Override public String apply( Collection<Player> players ) {
+
+		if ( players == null ) {
+			throw new IllegalArgumentException( "players cannot be null" );
+		}
 
 		String playersSummaryStr = players
 				.stream( )
@@ -38,6 +42,7 @@ public class SummaryFormatter
 				"Player",
 				"Total Win",
 				"Total Bet" )
+				+ "---\n"
 				+ playersSummaryStr + "\n";
 	}
 }

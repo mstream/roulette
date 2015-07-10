@@ -14,11 +14,15 @@ public class PlayerSummaryFormatter
 	private final String playerSummaryTemplate;
 
 	@Autowired
-	public PlayerSummaryFormatter( TableTemplateBuilder tableTemplateBuilder ) {
-		this.playerSummaryTemplate = tableTemplateBuilder.build( 3 );
+	public PlayerSummaryFormatter(
+			ObjectToStringFormatter<Integer> tableTemplateBuilder ) {
+		this.playerSummaryTemplate = tableTemplateBuilder.apply( 3 );
 	}
 
 	@Override public String apply( Player player ) {
+		if (player == null) {
+			throw new IllegalArgumentException( "player cannot be null" );
+		}
 		return String.format(
 				playerSummaryTemplate,
 				player.getName( ),

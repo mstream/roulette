@@ -11,4 +11,8 @@ public class EvenBetType extends BetType {
     @Override public String toString( ) {
         return "EVEN";
     }
+
+    @Override public boolean equals( Object obj ) {
+        return obj instanceof EvenBetType;
+    }
 }

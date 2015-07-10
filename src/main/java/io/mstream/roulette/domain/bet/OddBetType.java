@@ -11,4 +11,12 @@ public class OddBetType extends BetType {
     @Override public String toString( ) {
         return "ODD";
     }
+
+    @Override public boolean equals( Object obj ) {
+        return obj instanceof OddBetType;
+    }
+
+    @Override public int hashCode( ) {
+        return super.hashCode( );
+    }
 }

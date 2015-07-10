@@ -15,22 +15,22 @@ import java.util.stream.Collectors;
 @Component
 public class PlayersLinesParser implements StringParser<List<Player>> {
 
-    private final PlayerLineStringParser playerLineParser;
+    private final StringParser<Player> playerLineParser;
 
     @Autowired
-    public PlayersLinesParser( PlayerLineStringParser playerLineParser ) {
+    public PlayersLinesParser( StringParser<Player> playerLineParser ) {
         this.playerLineParser = playerLineParser;
     }
 
     @Override
-    public List<Player> apply(String playersDocument) {
-        try (BufferedReader bufferedReader = new BufferedReader(new StringReader(playersDocument))) {
+    public List<Player> apply(String playersLines) {
+        try (BufferedReader bufferedReader = new BufferedReader(new StringReader(playersLines))) {
             return bufferedReader
                     .lines()
                     .map(playerLineParser::apply)
                     .collect(Collectors.toList());
-        } catch (IOException e) {
-            throw new IllegalArgumentException("", e);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("could not parse players", e);
         }
     }
 
